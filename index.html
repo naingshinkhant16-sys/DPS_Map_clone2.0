@@ -133,22 +133,37 @@
   <!-- ... Your existing sonner-toast code above ... -->
 :where([data-sonner-toast][data-mounted="true"]){--y: translateY(0);opacity:}
 
-  <!-- PASTE THIS NEW FIXED CODE HERE -->
+  <!-- ... Your existing sonner-toast code above ... -->
+:where([data-sonner-toast][data-mounted="true"]){--y: translateY(0);opacity:}
+
+  <!-- COPY AND PASTE THIS NEW OVERRIDE HERE -->
   <style type="text/css">
+    /* 1. Forces the main wrapper to center perfectly on the screen */
     .container {
       margin-left: auto !important;
       margin-right: auto !important;
-      padding-left: 1rem !important;
-      padding-right: 1rem !important;
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+      max-width: 1200px !important;
       width: 100% !important;
-      max-width: 1280px !important;
+      float: none !important;
     }
+    
+    /* 2. Forces the grid content to space out and expand evenly */
     .grid {
+      display: grid !important;
       justify-content: center !important;
       justify-items: center !important;
       width: 100% !important;
     }
+
+    /* 3. Shifts the "Old Homepage" widget so it stops pushing your text to the left */
+    [class*="fixed"], [class*="absolute"], #old-website-widget, .fixed {
+      right: 16px !important;
+      z-index: 50 !important;
+    }
   </style>
+
  </head>
  <body>
   <div data-manus_click_id="1" data-manus_clickable="true" id="root">
