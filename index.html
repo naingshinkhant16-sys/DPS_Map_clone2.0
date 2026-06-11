@@ -136,34 +136,38 @@
   <!-- ... Your existing sonner-toast code above ... -->
 :where([data-sonner-toast][data-mounted="true"]){--y: translateY(0);opacity:}
 
-  <!-- COPY AND PASTE THIS NEW OVERRIDE HERE -->
+    <!-- Force Pure Flexbox Layout Spreading -->
   <style type="text/css">
-    /* 1. Forces the main wrapper to center perfectly on the screen */
-    .container {
-      margin-left: auto !important;
-      margin-right: auto !important;
-      padding-left: 2rem !important;
-      padding-right: 2rem !important;
-      max-width: 1200px !important;
+    /* 1. Target the blue feature section container directly */
+    section[class*="py-16"] > div, 
+    section[class*="md:py-20"] > div {
+      display: block !important;
       width: 100% !important;
-      float: none !important;
-    }
-    
-    /* 2. Forces the grid content to space out and expand evenly */
-    .grid {
-      display: grid !important;
-      justify-content: center !important;
-      justify-items: center !important;
-      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 4rem !important;
     }
 
-    /* 3. Shifts the "Old Homepage" widget so it stops pushing your text to the left */
-    [class*="fixed"], [class*="absolute"], #old-website-widget, .fixed {
-      right: 16px !important;
-      z-index: 50 !important;
+    /* 2. Force the 3 item wrapper to act as an unconstrained flex row */
+    section[class*="py-16"] div[class*="grid"],
+    section[class*="md:py-20"] div[class*="grid"] {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important; /* Forces items to spread edge-to-edge */
+      align-items: flex-start !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      gap: 2rem !important;
+    }
+
+    /* 3. Give each item a flexible expanding width base */
+    section[class*="py-16"] div[class*="grid"] > div,
+    section[class*="md:py-20"] div[class*="grid"] > div {
+      flex: 1 1 0% !important;
+      max-width: 30% !important;
+      margin: 0 !important;
     }
   </style>
-
  </head>
  <body>
   <div data-manus_click_id="1" data-manus_clickable="true" id="root">
